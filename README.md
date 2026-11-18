@@ -2,6 +2,26 @@
 
 A small sample project for running Nginx with Docker from WSL 2.
 
+## Overview
+
+```mermaid
+flowchart LR
+  subgraph windows[Windows OS]
+    browser[Browser<br/>localhost:8080]
+    subgraph wsl[WSL 2]
+      engine[Docker Engine]
+      subgraph container[Docker container]
+        nginx[Nginx<br/>port 80]
+        page[html/index.html]
+      end
+    end
+  end
+
+  browser -->|port forwarding 8080 to 80| nginx
+  engine -->|runs| nginx
+  nginx -->|serves| page
+```
+
 ## Requirements
 
 - Windows 10 or 11 with WSL 2
